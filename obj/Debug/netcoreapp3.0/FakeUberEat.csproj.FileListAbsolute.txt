@@ -33,3 +33,5 @@
 /home/sandwitchy/dotnet-workplace/FakeUberEat/obj/Debug/netcoreapp3.0/FakeUberEat.dll
 /home/sandwitchy/dotnet-workplace/FakeUberEat/obj/Debug/netcoreapp3.0/FakeUberEat.pdb
 /home/sandwitchy/dotnet-workplace/FakeUberEat/obj/Debug/netcoreapp3.0/FakeUberEat.csproj.CopyComplete
+/home/sandwitchy/dotnet-workplace/FakeUberEat/obj/Debug/netcoreapp3.0/Razor/Views/Plat/index.cshtml.g.cs
+/home/sandwitchy/dotnet-workplace/FakeUberEat/obj/Debug/netcoreapp3.0/Razor/Views/Plat/Details.cshtml.g.cs
