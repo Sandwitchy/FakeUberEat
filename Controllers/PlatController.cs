@@ -12,13 +12,14 @@ using FakeUberEat.Repository;
 namespace FakeUberEat.Controllers
 {
     public class PlatController : Controller {
-        private IPlatRepository repository;
-        public PlatController(IPlatRepository repository){
+        private IRepository repository;
+        public PlatController(IRepository repository){
             this.repository = repository;
         }
         public IActionResult Index()
         {
-            return View(repository.All());
+            List<Plat> plats = repository.All().Cast<Plat>().ToList();
+            return View(plats);
         }
 
         public IActionResult Insert(){

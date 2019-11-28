@@ -42,7 +42,7 @@ namespace FakeUberEat
         {
             services.AddControllersWithViews();
             services.AddScoped<MySqlDatabase>(_ => new MySqlDatabase(Configuration.GetConnectionString("Bdd")));
-            services.AddScoped<IPlatRepository, PlatRepository>();
+            services.AddScoped<IRepository, PlatRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

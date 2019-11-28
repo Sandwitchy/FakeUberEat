@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace FakeUberEat.Repository
 {
-    public class PlatRepository : IPlatRepository
+    public class PlatRepository : IRepository
     {
         private MySqlConnection dbConn;
 
@@ -20,7 +20,7 @@ namespace FakeUberEat.Repository
         /**
             Return all Plat from MySql
         */
-        public List<Plat> All(){
+        public List<object> All(){
             MySqlCommand cmd = dbConn.CreateCommand();
             cmd.CommandText = "SELECT id,titre,image,description,price from plat";
 
@@ -32,7 +32,7 @@ namespace FakeUberEat.Repository
             }
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            var ret = new List<Plat>();
+            var ret = new List<object>();
             while (reader.Read())
             {
                 var plat = new Plat(){
@@ -49,7 +49,7 @@ namespace FakeUberEat.Repository
         /**
         Return the plat with the Id gived
         */
-        public Plat getById(int id)
+        public object getById(int id)
         {
             MySqlCommand cmd = dbConn.CreateCommand();
             cmd.CommandText = "select id,titre,image,description,price from plat where id ="+ id;
@@ -80,8 +80,9 @@ namespace FakeUberEat.Repository
             Save the Parameter Plat in MySql 
             Do Insert and Update with the Id existing or not
         */
-        public void Save(Plat plat)
+        public void Save(object ObjectToSave)
         {
+            Plat plat = (Plat)ObjectToSave;
             MySqlCommand cmd = dbConn.CreateCommand();
             if(plat.Id != null){
                 cmd.CommandText = "UPDATE plat SET titre = @Titre,image = @Image,description = @Description,price = @Price WHERE id = @Id";
@@ -107,7 +108,8 @@ namespace FakeUberEat.Repository
             catch(Exception ex)  
             {  
                 dbConn.Close(); 
-                Debug.WriteLine(ex); 
+                Debug.WriteLine(ex);
+                throw new Exception(""+ex); 
             }  
         }
     }
