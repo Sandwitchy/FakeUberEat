@@ -2,15 +2,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FakeUberEat.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySql.Data.MySqlClient;
 
 namespace FakeUberEat
 {
+    public class MySqlDatabase : IDisposable
+      {
+      public MySqlConnection Connection;
+
+      public MySqlDatabase(string connectionString)
+      {
+        Connection = new MySqlConnection(connectionString);
+        this.Connection.Open();
+      }
+
+      public void Dispose()
+      {
+        Connection.Close();
+      }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,6 +41,8 @@ namespace FakeUberEat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<MySqlDatabase>(_ => new MySqlDatabase(Configuration.GetConnectionString("Bdd")));
+            services.AddScoped<IPlatRepository, PlatRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,5 +72,6 @@ namespace FakeUberEat
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        
     }
 }

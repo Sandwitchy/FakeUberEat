@@ -1,22 +1,34 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FakeUberEat.Models{
 
     public class Plat{
-        private long id;
-        private string titre;
-        private string image;
-        private string description;
-        private decimal price;
-        public Plat(long id,string titre,string image,string description,decimal price){
+        private int? id{get;set;}
+        [Required]
+        private string titre {get;set;}
+        [Required]
+        private string image {get;set;}
+        [Required]
+        private string description {get;set;}
+        [Required]
+        private decimal price {get;set;}
+        public Plat(){
+
+        }
+        public Plat(int? id,string titre,string image,string description,decimal price){
             this.id = id;
             this.titre = titre;
             this.description = description;
             this.image = image;
             this.price = price;
         }
-        public long Id{
+        public int? Id{
             get{
                 return id;
+            }
+            set{
+                id = value;
             }
         }
         public string Titre{

@@ -3,7 +3,8 @@
     ViewBag.Title = "Plats";
 }
 <div class="container">
-    <div class="row justify-content-between">
+    <a class="btn btn-primary" asp-area="" asp-controller="Plat" asp-action="Insert">Créer plat</a> 
+    <div class="row justify-content-center">
     @foreach(var plat in Model){
         <div class="card" style="width: 18rem;margin-top: 1rem">
             <img class="card-img-top" src="@Html.DisplayFor(Modelplat => plat.Image)" alt="@Html.DisplayFor(Modelplat => plat.Titre)">
