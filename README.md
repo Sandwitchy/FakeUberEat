@@ -8,5 +8,7 @@ INSTALL :
 - Clone the project
 - Setup the mysql database (connection string in appsettings.json)
 - Import the default Database from the import script in ./Db/import.sql
+    - The script create the database automaticly
+    - Some example fields will be insert
 - dotnet watch run (no production build setup so only dev)
 - enjoy
